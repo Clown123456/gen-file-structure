@@ -1,0 +1,4 @@
+node_modules
+gen-file-structure/lib
+*.tsbuildinfo
+.pnpm-debug.log

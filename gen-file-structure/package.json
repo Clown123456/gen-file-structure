@@ -1,0 +1,21 @@
+{
+  "name": "packages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "scripts": {
+    "gen": "ts-node ./lib/index.ts",
+    "build": "tsc --build"
+  },
+  "bin": {
+    "gen-file": "./bin/index.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "index.js"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

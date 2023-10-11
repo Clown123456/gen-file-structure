@@ -114,7 +114,7 @@ function generate(config: IGenConfig) {
   }
 
   if (pathExistsSync(config.out)) {
-    console.log(chalk.red("路径不存在"));
+    console.log(`${config.out}`, chalk.red("is not existed"));
     return;
   }
 

@@ -1,4 +1,4 @@
 module.exports = {
   rootPath: "./",
-  out: "./",
+  out: "./example.md",
 };

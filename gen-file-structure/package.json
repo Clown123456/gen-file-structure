@@ -1,7 +1,12 @@
 {
-  "name": "packages",
-  "version": "1.0.0",
-  "description": "",
+  "name": "gen-file-structure",
+  "version": "0.1.0",
+  "description": "generate your  file structure",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clown123456/gen-file-structure"
+  },
+  "homepage": "https://github.com/Clown123456/gen-file-structure/",
   "main": "./lib/index.js",
   "scripts": {
     "gen": "ts-node ./lib/index.ts",
@@ -12,10 +17,10 @@
   },
   "files": [
     "bin",
-    "lib",
-    "index.js"
+    "lib"
   ],
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "gen-file-structure"
+  ],
   "license": "ISC"
 }

@@ -1,7 +1,0 @@
-packages:
-  # all packages in subdirs of components/
-  - 'example/**'
-
-  - 'gen-file-structure/**'
-  # exclude packages that are inside test directories
-  - '!**/test/**'

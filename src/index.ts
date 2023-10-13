@@ -10,7 +10,6 @@ import {
 import path from "path";
 import { isDir, repeatString, getRealPath, sortDir } from "./utils";
 import { IGenConfig } from "./utils/config";
-// import chalk from "chalk";
 class Gen {
   private config: IGenConfig;
   private tem: string;
@@ -18,28 +17,28 @@ class Gen {
   private dirSign: string;
   private fileSign: string;
   private excludes: string[];
-
   private realPath: string;
   private out: string;
   private append: boolean;
-  constructor(config: IGenConfig) {
-    this.config = config;
+  constructor(config?: IGenConfig) {
+    this.config = config?config:{};
     this.tem = "";
     this.preTem = "";
-    const { rootPath, LinkSymbol, excludes, out, append } = this.config;
-    this.realPath = getRealPath(rootPath);
-    this.dirSign = LinkSymbol?.folder ? LinkSymbol?.folder : "└──";
-    this.fileSign = LinkSymbol?.file ? LinkSymbol?.file : "├──";
+    const { rootPath, excludes, out, append } = this.config;
+    this.realPath = rootPath?getRealPath(rootPath):process.cwd();
+    this.dirSign =  "└──";
+    this.fileSign = "├──";
     this.excludes =
-      excludes && excludes instanceof Array ? excludes : ["node_modules"];
-    this.out = out;
+      excludes && excludes instanceof Array ? excludes : ["node_modules",".git"];
+    this.out = out?out:path.join(process.cwd(),'structure.md');
     this.append = append != undefined ? append : false;
     console.log(require("chalk").green("reading configuration information..."));
   }
 
   /* 生成文件结构图*/
   getStructure(realPath: string, level = 0) {
-    const dirList = sortDir(readdirSync(realPath, "utf-8"), this.realPath);
+    const fileList=readdirSync(realPath, "utf-8")
+    const dirList = sortDir(fileList, this.realPath);
     const dirLen = dirList.length;
     dirList.map((dir, index) => {
       const flag = index > 0 && dirLen == index + 1;
@@ -97,27 +96,13 @@ ${tem}
     );
   }
 }
-function generate(config: IGenConfig) {
-  const chalk = require("chalk");
-  if (!config.rootPath) {
-    console.log(chalk.red("rootPath is required!"));
-    return;
-  }
-  if (!isDir(config.rootPath)) {
-    console.log(chalk.red("this path is not a directory!"));
-    return;
-  }
+function generate(config?: IGenConfig) {
+  const {red} = require("chalk");
 
-  if (!config.out) {
-    console.log(chalk.red("out is required!"));
+  if (config?.rootPath&&!isDir(config.rootPath)) {
+    console.log(red("this path is not a directory!"));
     return;
   }
-
-  if (pathExistsSync(config.out)) {
-    console.log(`${config.out}`, chalk.red("is not existed"));
-    return;
-  }
-
   const gen = new Gen(config);
   gen.genContent();
   gen.write();

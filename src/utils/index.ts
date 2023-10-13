@@ -19,6 +19,7 @@ export const repeatString=(str:string, n:number)=> {
 }
 
 export const getRealPath = (p:string) => {
+
   if (p.startsWith(".")) {
     return path.resolve(process.cwd(), p);
   } else if (p.startsWith("/")) {
@@ -28,8 +29,8 @@ export const getRealPath = (p:string) => {
   }
 };
 
-export const sortDir=(list:string[],realPath:string)=>{
-  const dirList=list.filter(item=> isDir(realPath+'/'+item))
+export const sortDir=(list:string[],realPath:string,)=>{
+  const dirList=list.filter(item=> isDir(realPath+'/'+item) )
   const fileList=list.filter(item=> !isDir(realPath+'/'+item))
   return [...dirList,...fileList];
  

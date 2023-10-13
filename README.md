@@ -13,7 +13,7 @@ gen({
   out: "./example.md",  
 })
 ```
-4. specify ignored files or folders  
+3. specify ignored files or folders  
 By default, `node_ modules` and `.git` folders will be ignored.
 ```js
 const gen=require('gen-file-structure')
@@ -23,7 +23,7 @@ gen({
   excludes:['package.lock.json',"node_modules",'.git'] 
 })
 ```
-5. Whether to append it to the Markdown document
+4. Whether to append it to the Markdown document
 ```js
 const gen=require('gen-file-structure')
 gen({

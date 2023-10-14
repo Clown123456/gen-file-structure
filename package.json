@@ -17,11 +17,15 @@
   },
   "files": [
     "bin",
-    "lib"
+    "lib",
+    "!**/*__tests__"
   ],
   "keywords": [
     "gen-file-structure"
   ],
+  "engines": {
+    "node": ">=14.14.0"
+  },
   "license": "ISC",
   "devDependencies": {
     "@types/fs-extra": "^11.0.2",
